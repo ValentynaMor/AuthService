@@ -10,10 +10,23 @@ repositories {
 }
 
 dependencies {
+    implementation 'org.jetbrains:annotations:20.1.0'
+
     // https://mvnrepository.com/artifact/org.testng/testng
     testImplementation 'org.testng:testng:7.5'
 }
 
 test {
-    useTestNG()
+    useTestNG(){
+        suites "src/test/resources/suites/positiveTests.xml";
+        suites "src/test/resources/suites/negativeTests.xml";
+        suites "src/test/resources/suites/allTests.xml"
+        useDefaultListeners true
+    }
+}
+
+task retest (type: Test) {
+    useTestNG(){
+        suites "build/reports/tests/test/testng-failed.xml"
+    }
 }

@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="positive" parallel="methods" thread-count="4">
+    <test name="authServiceTest">
+        <parameter name = "email-address" value = "user2@test.com"></parameter>
+        <parameter name ="password" value = "password2"></parameter>
+        <groups>
+            <run>
+                <include name="positive" />
+            </run>
+        </groups>
+    </test>
+    <packages>
+        <package name="net.absoft"></package>
+    </packages>
+</suite>
